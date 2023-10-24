@@ -1,0 +1,1 @@
+{"version":3,"sources":["components/burger.scss","components/burger.css"],"names":[],"mappings":"AAAA;EACE,WAAA;EACA,YAAA;ACCF","file":"components/burger.css","sourcesContent":[".burger {\n  width: 44px;\n  height: 44px;\n}\n",".burger {\n  width: 44px;\n  height: 44px;\n}"]}
