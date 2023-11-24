@@ -208,7 +208,7 @@ document.addEventListener("DOMContentLoaded", event => {
     let [entry] = _ref;
     const sliderView = entry.target || {};
     // Если видео вне viewport или видимо только на 20%
-    if (!entry.isIntersecting || entry.intersectionRatio <= 0.2) {
+    if (!entry.isIntersecting || entry.intersectionRatio <= 0.45) {
       // жмем паузу
       heroSlider.autoplay.stop();
     } else {
