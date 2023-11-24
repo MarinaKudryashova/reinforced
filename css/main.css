@@ -958,21 +958,37 @@ a {
   height: 100%;
 }
 .slider__bg {
+  position: relative;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
 }
+.slider__bg:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.6)));
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6));
+}
 .slider__bg--slabs {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.6))), url(../img/hero/bg-slabs.jpg);
-  background-image: linear-gradient(rgba(0, 0, 0, 0.6)), url(../img/hero/bg-slabs.jpg);
+  background-image: url("../img/hero/bg-slabs.jpg");
+  /* stylelint-disable-next-line declaration-block-no-duplicate-properties */
+  background-image: -webkit-image-set("../img/hero/bg-slabs.webp" type("image/webp"), "../img/hero/bg-slabs.jpg" type("image/jpg"));
+  background-image: image-set("../img/hero/bg-slabs.webp" type("image/webp"), "../img/hero/bg-slabs.jpg" type("image/jpg"));
 }
 .slider__bg--fittings {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.6))), url(../img/hero/bg-fittings.jpg);
-  background-image: linear-gradient(rgba(0, 0, 0, 0.6)), url(../img/hero/bg-fittings.jpg);
+  background-image: url("../img/hero/bg-fittings.jpg");
+  /* stylelint-disable-next-line declaration-block-no-duplicate-properties */
+  background-image: -webkit-image-set("../img/hero/bg-fittings.webp" type("image/webp"), "../img/hero/bg-fittings.jpg" type("image/jpg"));
+  background-image: image-set("../img/hero/bg-fittings.webp" type("image/webp"), "../img/hero/bg-fittings.jpg" type("image/jpg"));
 }
 .slider__bg--materials {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.6))), url(../img/hero/bg-materials.jpg);
-  background-image: linear-gradient(rgba(0, 0, 0, 0.6)), url(../img/hero/bg-materials.jpg);
+  background-image: url("../img/hero/bg-materials.jpg");
+  /* stylelint-disable-next-line declaration-block-no-duplicate-properties */
+  background-image: -webkit-image-set("../img/hero/bg-materials.webp" type("image/webp"), "../img/hero/bg-materials.jpg" type("image/jpg"));
+  background-image: image-set("../img/hero/bg-materials.webp" type("image/webp"), "../img/hero/bg-materials.jpg" type("image/jpg"));
 }
 .slider__pagination {
   position: absolute;
@@ -1188,7 +1204,10 @@ a {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center left 20px;
-  background-image: url(../img/about/about.png);
+  background-image: url("../img/about/about.png");
+  /* stylelint-disable-next-line declaration-block-no-duplicate-properties */
+  background-image: -webkit-image-set("../img/about/about.webp" type("image/webp"), "../img/about/about.png" type("image/png"));
+  background-image: image-set("../img/about/about.webp" type("image/webp"), "../img/about/about.png" type("image/png"));
 }
 @media (max-width: 1024px) {
   .about__img {
@@ -1439,7 +1458,7 @@ a {
   background-repeat: no-repeat;
   background-position: center left 10px;
   background-size: 20px 20px;
-  background-image: url(../img/svg/square.svg);
+  background-image: url(../img/square.svg);
 }
 .delivery__cars {
   display: -webkit-box;
@@ -1892,8 +1911,9 @@ a {
 .product-content__img img {
   display: block;
   width: 90%;
-  -o-object-fit: cover;
-  object-fit: cover;
+  max-height: 300px;
+  -o-object-fit: contain;
+  object-fit: contain;
 }
 .product-content__descr {
   -ms-grid-column-span: 7;

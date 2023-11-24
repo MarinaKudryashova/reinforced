@@ -33,7 +33,6 @@ __webpack_require__.r(__webpack_exports__);
 
 // Определение операционной системы на мобильных
 
-console.log((0,_functions_mobile_check__WEBPACK_IMPORTED_MODULE_0__.mobileCheck)());
 
 // Определение ширины экрана
 // import { isMobile, isTablet, isDesktop } from './functions/check-viewport';
@@ -176,19 +175,53 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! swiper */ "./node_modules/swiper/swiper.esm.js");
 
 swiper__WEBPACK_IMPORTED_MODULE_0__["default"].use([swiper__WEBPACK_IMPORTED_MODULE_0__.Navigation, swiper__WEBPACK_IMPORTED_MODULE_0__.Pagination, swiper__WEBPACK_IMPORTED_MODULE_0__.Autoplay, swiper__WEBPACK_IMPORTED_MODULE_0__.EffectFade]);
-const heroSlider = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.slider', {
-  effect: "fade",
-  speed: 1200,
-  slidesPerView: 1,
-  pagination: {
-    el: '.slider__pagination',
-    clickable: true,
-    type: 'bullets'
-  },
-  autoplay: {
-    delay: 3500,
-    disableOnInteraction: false
-  }
+document.addEventListener("DOMContentLoaded", event => {
+  const slider = document.querySelector('.slider');
+  const heroSlider = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"](slider, {
+    effect: "fade",
+    speed: 1200,
+    slidesPerView: 1,
+    pagination: {
+      el: '.slider__pagination',
+      clickable: true,
+      type: 'bullets'
+    },
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false
+    }
+    // on: {
+    //   init() {
+    //     this.el.addEventListener('mouseover', () => {
+    //       console.log('stop autoplay');
+    //       this.autoplay.stop()
+    //     });
+    //     this.el.addEventListener('mouseout', () => {
+    //       console.log('start autoplay');
+    //       this.autoplay.start()
+    //     });
+    //   }
+    // },
+  });
+
+  const sliderObserver = new IntersectionObserver(_ref => {
+    let [entry] = _ref;
+    const sliderView = entry.target || {};
+    // Если видео вне viewport или видимо только на 20%
+    if (!entry.isIntersecting || entry.intersectionRatio <= 0.2) {
+      // жмем паузу
+      heroSlider.autoplay.stop();
+    } else {
+      // иначе воспроизводим
+      heroSlider.autoplay.start();
+    }
+  }, {
+    // Трригер сработает при выходе как верхней, так и нижней границы
+    threshold: [0.2, 0.8]
+  });
+  document.querySelectorAll('.slider').forEach(sliderView => {
+    sliderObserver.observe(sliderView);
+  });
 });
 
 /***/ }),
