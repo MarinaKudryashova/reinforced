@@ -12,6 +12,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_smooth_scroll__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/smooth-scroll */ "./src/js/components/smooth-scroll.js");
 /* harmony import */ var _components_slider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/slider */ "./src/js/components/slider.js");
 /* harmony import */ var _components_modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/modal */ "./src/js/components/modal.js");
+/* harmony import */ var _components_gsap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/gsap */ "./src/js/components/gsap.js");
+
 
 
 
@@ -150,6 +152,33 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/js/components/gsap.js":
+/*!***********************************!*\
+  !*** ./src/js/components/gsap.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+
+
+// let tl = gsap.timeline({ease: "power1.inOut",});
+
+// const heroTitle = document.querySelector(".hero__title").children;
+// tl.from(heroTitle, { opacity: 0, scale: 0.8, duration: 1, stagger: 0.5,}, "=0.4")
+//     .from(".hero__text", { opacity: 0, duration: 1,}, "-=0.2")
+//     .from(".hero__btn", { opacity: 0, duration: 1,}, "-=0.2");
+
+// const productsCard = document.querySelector(".products__list").children;
+// tl.from(productsCard, { opacity: 0, duration: 1, stagger: 0.5,}, ">");
+
+// const titleSpan = document.querySelector(".hero__title")
+// tl.from(".hero__title", { yPercent: 100, opacity: 0, duration: 1}, 1)
+// tl.from(".hero__btn", { yPercent: 100, opacity: 0, duration: 1}, "<");
+// .from(".hero__text", { opacity: 0, duration: 1}, "-=0.4");
+
+/***/ }),
+
 /***/ "./src/js/components/modal.js":
 /*!************************************!*\
   !*** ./src/js/components/modal.js ***!
@@ -257,7 +286,9 @@ __webpack_require__.r(__webpack_exports__);
   const burger = document?.querySelector('[data-burger]');
   const menu = document?.querySelector('[data-menu]');
   const menuItems = document?.querySelectorAll('[data-menu-item]');
+  const submenuItems = document?.querySelector('[data-submenu-item]');
   const overlay = document?.querySelector('[data-menu-overlay]');
+
   // const closeBtn = document?.querySelector('[data-menu-close]');
 
   burger?.addEventListener('click', e => {
@@ -297,6 +328,9 @@ __webpack_require__.r(__webpack_exports__);
       menu.classList.remove('menu--active');
       (0,_functions_enable_scroll__WEBPACK_IMPORTED_MODULE_1__.enableScroll)();
     });
+  });
+  submenuItems?.addEventListener('click', function () {
+    this.closest("li").classList.toggle("active");
   });
 })();
 
