@@ -9,9 +9,9 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_slider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/slider */ "./src/js/components/slider.js");
-/* harmony import */ var _components_modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/modal */ "./src/js/components/modal.js");
-/* harmony import */ var _components_smooth_scroll__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/smooth-scroll */ "./src/js/components/smooth-scroll.js");
+/* harmony import */ var _components_smooth_scroll__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/smooth-scroll */ "./src/js/components/smooth-scroll.js");
+/* harmony import */ var _components_slider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/slider */ "./src/js/components/slider.js");
+/* harmony import */ var _components_modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/modal */ "./src/js/components/modal.js");
 /* harmony import */ var _components_gsap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/gsap */ "./src/js/components/gsap.js");
 
 
@@ -28,13 +28,14 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _functions_mobile_check__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./functions/mobile-check */ "./src/js/functions/mobile-check.js");
-/* harmony import */ var _functions_burger__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./functions/burger */ "./src/js/functions/burger.js");
+/* harmony import */ var _functions_burger__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./functions/burger */ "./src/js/functions/burger.js");
+/* harmony import */ var _functions_disable_scroll__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./functions/disable-scroll */ "./src/js/functions/disable-scroll.js");
+/* harmony import */ var _functions_enable_scroll__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./functions/enable-scroll */ "./src/js/functions/enable-scroll.js");
 // Данный файл - лишь собрание подключений готовых компонентов.
 // Рекомендуется создавать отдельный файл в папке components и подключать все там
 
 // Определение операционной системы на мобильных
-
+// import { mobileCheck } from "./functions/mobile-check";
 
 // Определение ширины экрана
 // import { isMobile, isTablet, isDesktop } from './functions/check-viewport';
@@ -55,10 +56,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 // Реализация остановки скролла (не забудьте вызвать функцию)
-// import { disableScroll } from './functions/disable-scroll';
+
 
 // Реализация включения скролла (не забудьте вызвать функцию)
-// import { enableScroll } from './functions/enable-scroll';
+
 
 // Реализация модального окна
 // import GraphModal from 'graph-modal';
@@ -265,8 +266,13 @@ document.addEventListener("DOMContentLoaded", event => {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var smooth_scroll__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! smooth-scroll */ "./node_modules/smooth-scroll/dist/smooth-scroll.polyfills.min.js");
 /* harmony import */ var smooth_scroll__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(smooth_scroll__WEBPACK_IMPORTED_MODULE_0__);
+// Подключение плавной прокрутки к якорям
 
-const scroll = new (smooth_scroll__WEBPACK_IMPORTED_MODULE_0___default())('a[href*="#"]');
+const scroll = new (smooth_scroll__WEBPACK_IMPORTED_MODULE_0___default())('a[href*="#"]', {
+  speed: 300,
+  speedAsDuration: true,
+  easing: 'linear'
+});
 
 /***/ }),
 
@@ -287,8 +293,7 @@ __webpack_require__.r(__webpack_exports__);
   const menu = document?.querySelector('[data-menu]');
   const menuItems = document?.querySelectorAll('[data-menu-item]');
   const submenuItems = document?.querySelector('[data-submenu-item]');
-  const overlay = document?.querySelector('[data-menu-overlay]');
-
+  // const overlay = document?.querySelector('[data-menu-overlay]');
   // const closeBtn = document?.querySelector('[data-menu-close]');
 
   burger?.addEventListener('click', e => {
@@ -313,13 +318,14 @@ __webpack_require__.r(__webpack_exports__);
   //   enableScroll();
   // });
 
-  overlay?.addEventListener('click', () => {
-    burger?.setAttribute('aria-expanded', 'false');
-    burger?.setAttribute('aria-label', 'Открыть меню');
-    burger.classList.remove('burger--active');
-    menu.classList.remove('menu--active');
-    (0,_functions_enable_scroll__WEBPACK_IMPORTED_MODULE_1__.enableScroll)();
-  });
+  // overlay?.addEventListener('click', () => {
+  //   burger?.setAttribute('aria-expanded', 'false');
+  //   burger?.setAttribute('aria-label', 'Открыть меню');
+  //   burger.classList.remove('burger--active');
+  //   menu.classList.remove('menu--active');
+  //   enableScroll();
+  // });
+
   menuItems?.forEach(el => {
     el.addEventListener('click', () => {
       burger?.setAttribute('aria-expanded', 'false');
@@ -394,34 +400,6 @@ const enableScroll = () => {
   });
   _vars__WEBPACK_IMPORTED_MODULE_0__["default"].bodyEl.removeAttribute('data-position');
   _vars__WEBPACK_IMPORTED_MODULE_0__["default"].htmlEl.style.scrollBehavior = 'smooth';
-};
-
-/***/ }),
-
-/***/ "./src/js/functions/mobile-check.js":
-/*!******************************************!*\
-  !*** ./src/js/functions/mobile-check.js ***!
-  \******************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   mobileCheck: () => (/* binding */ mobileCheck)
-/* harmony export */ });
-/* harmony import */ var _vars__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../_vars */ "./src/js/_vars.js");
-
-const mobileCheck = () => {
-  const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-  if (/android/i.test(userAgent)) {
-    _vars__WEBPACK_IMPORTED_MODULE_0__["default"].htmlEl.classList.add('page--android');
-    return "Android";
-  }
-  if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-    _vars__WEBPACK_IMPORTED_MODULE_0__["default"].htmlEl.classList.add('page--ios');
-    return "iOS";
-  }
-  return "unknown";
 };
 
 /***/ }),
